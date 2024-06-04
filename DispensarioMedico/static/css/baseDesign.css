@@ -1,0 +1,21 @@
+th, td{
+    text-align: center;
+    vertical-align: middle;
+}
+
+
+.container{
+    margin-top: 2rem;
+
+}
+
+body {
+  height: 1000px;
+  border: 1px solid red;
+  position: relative;
+}
+
+.checkInput{
+    margin-right: 2rem;
+}
+
