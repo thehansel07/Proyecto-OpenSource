@@ -2,84 +2,11 @@
 
 {% block title %} Dispensario Médico {% endblock %}
 
+{% block navegacion %}Index{%endblock%}
+
 
 {% block body %}
-    <div class="row">
-      <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
-          <h4>Gestión de Marcas</h4>
-          <div class="card">
-              <div class="card-body">
-                  <form action="/registrarMarcas/" method="post">{% csrf_token %}
-                      <div class="form-group">
-                          <label for="">Descripcion:</label>
-                          <input type="text"
-                                 name="txtdescripcionMarca"
-                                 class="form-control"
-                                 placeholder="Descripcion"
-                                 minlength="1"
-                                 maxlength="500"
-                                 required>
-                      </div>
-
-                      <div class="form-group" style="margin-left: 0.4rem" >
-                          <div class="form-check">
-                              <input class="form-check-input"
-                                     type="checkbox"
-                                      name="txtEstadoMarca"
-                                      id="txtEstadoMarca"
-                                      required>
-                              <label class="form-check-label" for="gridCheck">Estado</label>
-                          </div>
-                      </div>
-
-                      <div class="form-group">
-                          <button type="submit" class="btn btn-success btn-block text-white">Guardar</button>
-                      </div>
-                      
-                  </form>
-              </div>
-          </div>
 
 
-      </div>
 
-    <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8">
-        <h3>Listado de Marcas</h3>
-          <div class="table-resposive py-2">
-            <table class="table table-striped">
-                    <thead>
-                      <tr>
-                          <th>#</th>
-                          <th>ID</th>
-                          <th>Descripción</th>
-                          <th>Estado</th>
-                          <th colspan="2">Opciones</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                    {% for marca in marcas %}
-                        <tr>
-                            <td>{{ forloop.counter }}</td>
-                            <td>{{marca.idmarca }}</td>
-                            <td>{{marca.descripcion}}</td>
-                            <td>
-                            {% if marca.estado == 1 %}
-                                <i class="fa-solid fa-circle-check"></i>
-                            {% endif %}
-                            {% if marca.estado == 0 %}
-                               <i class="fa-regular fa-circle-check"></i>
-                            {% endif %}
-
-
-                            </td>
-                            <td><a href="edicionMarcas/{{ marca.idmarca }}" class="btn btn-info">Editar</a></td>
-                            <td><a href="eliminarMarcas/{{ marca.idmarca }}" class="btn btn-danger btnEliminacion">Eliminar</a></td>
-                        </tr>
-                    {% endfor %}
-                    </tbody>
-
-            </table>
-        </div>
-      </div>
-    </div>
-{% endblock %}
+{% endblock body %}

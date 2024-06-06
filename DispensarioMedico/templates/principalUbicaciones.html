@@ -1,0 +1,119 @@
+{% extends "./base.html" %}
+
+{% block title %}Dispensario Médico{% endblock %}
+{% block navegacion %}Ubicaciones{% endblock %}
+
+{% block body %}
+<div class="row">
+    <div class="col-lg-4 col-xl-4 mb-4">
+        <h4>Gestión de Ubicaciones</h4>
+        <div class="card">
+            <div class="card-body">
+                <form action="/registrarUbicaciones/" method="post">{% csrf_token %}
+                    <div class="form-group mb-3">
+                        <label for="txtDescripcionUbicaciones">Descripción:</label>
+                        <input type="text"
+                               name="txtDescripcionUbicaciones"
+                               id="txtDescripcionUbicaciones"
+                               class="form-control"
+                               placeholder="Descripción"
+                               minlength="1"
+                               maxlength="500"
+                               required>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label for="txtEstanteUbicaciones">Estante:</label>
+                        <input type="text"
+                               name="txtEstanteUbicaciones"
+                               id="txtEstanteUbicaciones"
+                               class="form-control"
+                               placeholder="Estante"
+                               minlength="1"
+                               maxlength="500"
+                               required>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label for="txtTramoUbicaciones">Tramo:</label>
+                        <input type="text"
+                               name="txtTramoUbicaciones"
+                               id="txtTramoUbicaciones"
+                               class="form-control"
+                               placeholder="Tramo"
+                               minlength="1"
+                               maxlength="500"
+                               required>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label for="txtCeldaUbicaciones">Celda:</label>
+                        <input type="text"
+                               name="txtCeldaUbicaciones"
+                               id="txtCeldaUbicaciones"
+                               class="form-control"
+                               placeholder="Celda"
+                               minlength="1"
+                               maxlength="500"
+                               required>
+                    </div>
+
+                    <div class="form-check mb-3">
+                        <input class="form-check-input"
+                               type="checkbox"
+                               name="txtEstadoUbicaciones"
+                               id="txtEstadoUbicaciones"
+                               required>
+                        <label class="form-check-label" for="txtEstadoUbicaciones">Estado</label>
+                    </div>
+
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-success text-white">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-8 col-xl-8">
+        <h3>Listado de Ubicaciones</h3>
+        <div class="table-responsive py-2">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Descripción</th>
+                        <th>Estante</th>
+                        <th>Tramo</th>
+                        <th>Celda</th>
+                        <th>Estado</th>
+                        <th>Opciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for ubicacion in ubicaciones %}
+                    <tr>
+                        <td>{{ ubicacion.idubicaciones }}</td>
+                        <td>{{ ubicacion.descripcion }}</td>
+                        <td>{{ ubicacion.estante }}</td>
+                        <td>{{ ubicacion.tramo }}</td>
+                        <td>{{ ubicacion.celda }}</td>
+                        <td>
+                            {% if ubicacion.estado == 1 %}
+                                <i class="fa-solid fa-circle-check text-success"></i>
+                            {% else %}
+                                <i class="fa-regular fa-circle-check text-muted"></i>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <a href="edicionUbicaciones/{{ ubicacion.idubicaciones }}" class="btn btn-info btn-sm">Editar</a>
+                            <a href="eliminarUbicaciones/{{ ubicacion.idubicaciones }}" class="btn btn-danger btn-sm btnEliminacion">Eliminar</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

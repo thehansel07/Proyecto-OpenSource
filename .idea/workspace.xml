@@ -5,36 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="61aaee50-de3c-42c9-83dc-c0be42c6171e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/DispensarioMedicoProject.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DispensarioMedico.db" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DispensarioMedico/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DispensarioMedico/admin.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DispensarioMedico/apps.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DispensarioMedico/migrations/0001_initial.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DispensarioMedico/migrations/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DispensarioMedico/models.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DispensarioMedico/static/css/baseDesign.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DispensarioMedico/static/css/gestionMarcas.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DispensarioMedico/static/js/gestionMarcas.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DispensarioMedico/templates/base.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DispensarioMedico/templates/edicionMarcas.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DispensarioMedico/templates/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DispensarioMedico/tests.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DispensarioMedico/urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DispensarioMedico/views.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DispensarioMedicoProject/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DispensarioMedicoProject/asgi.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DispensarioMedicoProject/settings.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DispensarioMedicoProject/urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DispensarioMedicoProject/wsgi.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manage.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DispensarioMedico/templates/edicionTipoFarmaco.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DispensarioMedico/templates/edicionUbicaciones.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DispensarioMedico/templates/principalMarcas.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DispensarioMedico/templates/principalMedicamentos.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DispensarioMedico/templates/principalTipoFarmaco.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DispensarioMedico/templates/principalUbicaciones.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/bcb465ef-d604-4270-a961-f738eaa56cf8.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/bcb465ef-d604-4270-a961-f738eaa56cf8.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DispensarioMedico.db" beforeDir="false" afterPath="$PROJECT_DIR$/DispensarioMedico.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DispensarioMedico/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/DispensarioMedico/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DispensarioMedico/static/css/baseDesign.css" beforeDir="false" afterPath="$PROJECT_DIR$/DispensarioMedico/static/css/baseDesign.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DispensarioMedico/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/DispensarioMedico/templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DispensarioMedico/templates/edicionMarcas.html" beforeDir="false" afterPath="$PROJECT_DIR$/DispensarioMedico/templates/edicionMarcas.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DispensarioMedico/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/DispensarioMedico/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DispensarioMedico/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/DispensarioMedico/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DispensarioMedico/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/DispensarioMedico/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,8 +34,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Python Script" />
-        <option value="HTML File" />
         <option value="JavaScript File" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -68,12 +54,12 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "DefaultHtmlFileTemplate": "HTML File",
-    "Django Server.DispensarioMedicoProject.executor": "Run",
+    "Django Server.DispensarioMedicoProject.executor": "Debug",
     "Python.settings.executor": "Run",
     "RunOnceActivity.OpenDjangoStructureViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "main",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -133,23 +119,35 @@
       <workItem from="1716501484996" duration="4897000" />
       <workItem from="1716571468666" duration="151000" />
       <workItem from="1716571651964" duration="42000" />
-      <workItem from="1716572179097" duration="66380000" />
+      <workItem from="1716572179097" duration="66894000" />
+      <workItem from="1717612909371" duration="8959000" />
+      <workItem from="1717680765410" duration="19184000" />
     </task>
+    <task id="LOCAL-00001" summary="Crud Marcas listo">
+      <option name="closed" value="true" />
+      <created>1717472718973</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1717472718973</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Crud Marcas listo">
+      <option name="closed" value="true" />
+      <created>1717472757730</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1717472757730</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/DispensarioMedico/views.py</url>
-          <line>35</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Crud Marcas listo" />
+    <option name="LAST_COMMIT_MESSAGE" value="Crud Marcas listo" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/DispensarioMedicoProject$settings.coverage" NAME="settings Coverage Results" MODIFIED="1716570911249" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/DispensarioMedicoProject" />

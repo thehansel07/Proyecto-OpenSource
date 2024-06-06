@@ -6,42 +6,41 @@
 {% block body %}
 
         <div class="col-md-5">
-            <h2>Editando Marca</h2>
+            <h2>Editando Tipo Farmaco</h2>
             <div class="card">
               <div class="card-body">
-                  <form action="/editarMarcas/" method="POST" enctype="multipart/form-data">{% csrf_token %}
+                  <form action="/editarTipoFarmaco/" method="POST" enctype="multipart/form-data">{% csrf_token %}
 
                       <div class="form-group">
                           <label for="">ID:</label>
                           <input type="text"
-                                 name="txtIdmarca"
-                                 value="{{marca.idmarca }}"
+                                 name="txtIdTipoFarmaco"
+                                 value="{{tipoFarmaco.idtipofarmaco }}"
                                  class="form-control"
                                  placeholder="ID"
                                  readonly>
                       </div>
 
-
+                      <br>
                       <div class="form-group">
                           <label for="">Descripción:</label>
                           <input type="text"
-                                 name="txtdescripcionMarca"
-                                 value="{{marca.descripcion}}"
+                                 name="txtDescripcionTipoFarmaco"
+                                 value="{{tipoFarmaco.descripcion}}"
                                  class="form-control"
                                  placeholder="Descripcion"
                                  minlength="1"
                                  maxlength="500"
                                  required>
                       </div>
-
                       <br>
                       <div class="form-group" style="margin-left: 0.4rem">
                           <div class="form-check">
                               <input class="form-check-input"
                                       type="checkbox"
-                                      name="txtEstadoMarcas"
-                                      id="txtEstadoMarcas"
-                                      {% if marca.estado == 1 %}checked{% endif %}>
+                                      name="txtEstadoTipoFarmaco"
+                                      id="txtEstadoTipoFarmacos"
+                                      {% if tipoFarmaco.estado == 1 %}checked{% endif %}>
                               <label class="form-check-label" for="gridCheck">Estado</label>
                           </div>
 
@@ -55,7 +54,11 @@
 
               </div>
           </div>
-    </div>
+
+
+        </div>
+
+
 
 {% endblock body %}
 

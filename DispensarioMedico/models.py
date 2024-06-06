@@ -97,8 +97,8 @@ class Marcas(models.Model):
     estado = models.TextField(db_column='Estado', blank=True, null=True)  # Field name made lowercase. This field type is a guess.
 
     def __str__(self):
-        texto = "IdMarca:{0},Descripcion: {1} "
-        return texto.format(self.idmarca, self.descripcion)
+        texto = "{0} "
+        return texto.format(self.descripcion)
 
     class Meta:
         managed = True
@@ -134,6 +134,9 @@ class Tipofarmacos(models.Model):
     idtipofarmaco = models.AutoField(db_column='idTipoFarmaco', primary_key=True)  # Field name made lowercase.
     descripcion = models.TextField(db_column='Descripcion', blank=True, null=True)  # Field name made lowercase.
     estado = models.TextField(db_column='Estado', blank=True, null=True)  # Field name made lowercase. This field type is a guess.
+    def __str__(self):
+        texto = "{0} "
+        return texto.format(self.descripcion)
 
     class Meta:
         managed = False
@@ -158,6 +161,9 @@ class Ubicacioness(models.Model):
     celda = models.TextField(db_column='Celda', blank=True, null=True)  # Field name made lowercase.
     estado = models.TextField(db_column='Estado', blank=True, null=True)  # Field name made lowercase. This field type is a guess.
 
+    def __str__(self):
+        texto = "{0} "
+        return texto.format(self.descripcion)
     class Meta:
         managed = False
         db_table = 'Ubicacioness'
@@ -286,3 +292,17 @@ class DjangoSession(models.Model):
     class Meta:
         managed = False
         db_table = 'django_session'
+
+
+class Medicamentos(models.Model):
+    idmedicamentos = models.AutoField(db_column='idMedicamentos', primary_key=True)  # Field name made lowercase.
+    descripcion = models.TextField(db_column='Descripcion', blank=True, null=True)  # Field name made lowercase.
+    idtipofarmaco = models.ForeignKey('Tipofarmacos', models.DO_NOTHING, db_column='idTipoFarmaco', blank=True, null=True)  # Field name made lowercase.
+    idmarca = models.ForeignKey(Marcas, models.DO_NOTHING, db_column='idMarca', blank=True, null=True)  # Field name made lowercase.
+    idubicaciones = models.ForeignKey('Ubicacioness', models.DO_NOTHING, db_column='idUbicaciones', blank=True, null=True)  # Field name made lowercase.
+    dosis = models.TextField(db_column='Dosis', blank=True, null=True)  # Field name made lowercase.
+    estado = models.TextField(db_column='Estado', blank=True, null=True)  # Field name made lowercase. This field type is a guess.
+
+    class Meta:
+        managed = False
+        db_table = 'Medicamentos'

@@ -1,0 +1,131 @@
+{% extends "./base.html" %}
+
+{% block title %}Dispensario Médico{% endblock %}
+{% block navegacion %}Medicamentos{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4 mb-4">
+            <h4>Gestión de Medicamentos</h4>
+            <div class="card">
+                <div class="card-body">
+                    <form action="/registrarMedicamentos/" method="post">{% csrf_token %}
+                        <div class="form-group mb-3">
+                            <label for="txtDescripcionMedicamentos">Descripción:</label>
+                            <input type="text"
+                                   name="txtDescripcionMedicamentos"
+                                   id="txtDescripcionMedicamentos"
+                                   class="form-control"
+                                   placeholder="Descripción"
+                                   minlength="1"
+                                   maxlength="500"
+                                   required>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label for="txtIdUbicaciones">Ubicación:</label>
+                            <select class="form-select"
+                                    name="txtIdUbicaciones"
+                                    id="txtIdUbicaciones">
+                                <option selected>--Seleccionar--</option>
+                                {% for ubicacione in ubicaciones %}
+                                    <option value="{{ ubicacione.idubicaciones }}">{{ ubicacione.descripcion }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label for="txtidTipoFarmaco">Tipo Fármaco:</label>
+                            <select class="form-select"
+                                    name="txtidTipoFarmaco"
+                                    id="txtidTipoFarmaco">
+                                <option selected>--Seleccionar--</option>
+                                {% for tipoFarmaco in tipoFarmacos %}
+                                    <option value="{{ tipoFarmaco.idubicaciones }}">{{ tipoFarmaco.descripcion }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label for="txtIdMarca">Marca:</label>
+                            <select class="form-select"
+                                    name="txtIdMarca"
+                                    id="txtIdMarca">
+                                <option selected>--Seleccionar--</option>
+                                {% for marca in marcas %}
+                                    <option value="{{ marca.idmarca }}">{{ marca.descripcion }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="form-check mb-3">
+                            <input class="form-check-input"
+                                   type="checkbox"
+                                   name="txtEstadoMedicamentos"
+                                   id="txtEstadoMedicamentos"
+                                   required>
+                            <label class="form-check-label" for="txtEstadoMedicamentos">Estado</label>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label for="txtDosisMedicamentos">Dosis:</label>
+                            <input type="text"
+                                   name="txtDosisMedicamentos"
+                                   id="txtDosisMedicamentos"
+                                   class="form-control"
+                                   placeholder="Dosis"
+                                   minlength="1"
+                                   maxlength="500"
+                                   required>
+                        </div>
+
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-success text-white">Guardar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8">
+            <h3>Listado de Medicamentos</h3>
+            <div class="table-responsive py-2">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Descripción</th>
+                            <th>Tipo Fármaco</th>
+                            <th>Marca</th>
+                            <th>Ubicación</th>
+                            <th>Dosis</th>
+                            <th>Estado</th>
+                            <th colspan="2">Opciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for medicamento in medicamentos %}
+                            <tr>
+                                <td>{{ medicamento.idmedicamentos }}</td>
+                                <td>{{ medicamento.descripcion }}</td>
+                                <td>{{ medicamento.idtipofarmaco }}</td>
+                                <td>{{ medicamento.idmarca }}</td>
+                                <td>{{ medicamento.idubicaciones }}</td>
+                                <td>{{ medicamento.dosis }}</td>
+                                <td>
+                                    {% if medicamento.estado == 1 %}
+                                        <i class="fa-solid fa-circle-check text-success"></i>
+                                    {% else %}
+                                        <i class="fa-regular fa-circle-check text-muted"></i>
+                                    {% endif %}
+                                </td>
+                                <td><a href="edicionMedicamentos/{{ medicamento.idmedicamentos }}" class="btn btn-info btn-sm">Editar</a></td>
+                                <td><a href="eliminarMedicamentos/{{ medicamento.idmedicamentos }}" class="btn btn-danger btn-sm btnEliminacion">Eliminar</a></td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
