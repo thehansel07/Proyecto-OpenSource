@@ -4,21 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="61aaee50-de3c-42c9-83dc-c0be42c6171e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/DispensarioMedico/templates/edicionTipoFarmaco.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DispensarioMedico/templates/edicionUbicaciones.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DispensarioMedico/templates/principalMarcas.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DispensarioMedico/templates/principalMedicamentos.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DispensarioMedico/templates/principalTipoFarmaco.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DispensarioMedico/templates/principalUbicaciones.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/bcb465ef-d604-4270-a961-f738eaa56cf8.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/bcb465ef-d604-4270-a961-f738eaa56cf8.xml" afterDir="false" />
+    <list default="true" id="61aaee50-de3c-42c9-83dc-c0be42c6171e" name="Changes" comment="Crud Marcas listo">
+      <change afterPath="$PROJECT_DIR$/DispensarioMedico/templates/edicionMedicamentos.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DispensarioMedico.db" beforeDir="false" afterPath="$PROJECT_DIR$/DispensarioMedico.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DispensarioMedico/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/DispensarioMedico/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DispensarioMedico/static/css/baseDesign.css" beforeDir="false" afterPath="$PROJECT_DIR$/DispensarioMedico/static/css/baseDesign.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DispensarioMedico/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/DispensarioMedico/templates/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DispensarioMedico/templates/edicionMarcas.html" beforeDir="false" afterPath="$PROJECT_DIR$/DispensarioMedico/templates/edicionMarcas.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DispensarioMedico/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/DispensarioMedico/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DispensarioMedico/templates/principalMedicamentos.html" beforeDir="false" afterPath="$PROJECT_DIR$/DispensarioMedico/templates/principalMedicamentos.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DispensarioMedico/templates/principalUbicaciones.html" beforeDir="false" afterPath="$PROJECT_DIR$/DispensarioMedico/templates/principalUbicaciones.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DispensarioMedico/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/DispensarioMedico/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DispensarioMedico/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/DispensarioMedico/views.py" afterDir="false" />
     </list>
@@ -42,6 +35,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "thehansel07"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/thehansel07/Proyecto-OpenSource.git",
+    "accountId": "ce26a438-2caa-4d86-8409-a73f5d4ccbcb"
+  }
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 6
 }</component>
@@ -121,7 +126,7 @@
       <workItem from="1716571651964" duration="42000" />
       <workItem from="1716572179097" duration="66894000" />
       <workItem from="1717612909371" duration="8959000" />
-      <workItem from="1717680765410" duration="19184000" />
+      <workItem from="1717680765410" duration="26743000" />
     </task>
     <task id="LOCAL-00001" summary="Crud Marcas listo">
       <option name="closed" value="true" />
@@ -139,7 +144,23 @@
       <option name="project" value="LOCAL" />
       <updated>1717472757730</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Crud Marcas listo">
+      <option name="closed" value="true" />
+      <created>1717715468271</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1717715468271</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Crud Marcas listo">
+      <option name="closed" value="true" />
+      <created>1717715479870</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1717715479870</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -148,6 +169,27 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Crud Marcas listo" />
     <option name="LAST_COMMIT_MESSAGE" value="Crud Marcas listo" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/DispensarioMedico/views.py</url>
+          <line>89</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/DispensarioMedico/views.py</url>
+          <line>25</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/DispensarioMedico/views.py</url>
+          <line>26</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/DispensarioMedicoProject$settings.coverage" NAME="settings Coverage Results" MODIFIED="1716570911249" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/DispensarioMedicoProject" />

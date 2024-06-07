@@ -87,6 +87,37 @@ def registrarUbicaciones(request):
 
     return redirect('/principalUbicaciones')
 
+def registrarMedicamentos(request):
+    descripcion = request.POST['txtDescripcionMedicamentos']
+    idubicaciones = request.POST['txtIdUbicaciones']
+    idtipofarmaco = request.POST['txtidTipoFarmaco']
+    idmarca = request.POST['txtIdMarca']
+    estado = request.POST['txtEstadoMedicamentos']
+    dosis = request.POST['txtDosisMedicamentos']
+
+    tipofarmacos_instance = Tipofarmacos.objects.get(idtipofarmaco=idtipofarmaco)
+    marca_instance = Marcas.objects.get( idmarca= idmarca)
+    ubicaciones_instance = Ubicacioness.objects.get(idubicaciones =idubicaciones)
+
+
+    #Valid if estado is on or off#
+    if estado == 'on':
+        estado = 1
+    else:
+        estado = 0
+
+    Medicamentos.objects.create(descripcion=descripcion,
+                                idtipofarmaco=tipofarmacos_instance,
+                                idmarca=marca_instance,
+                                idubicaciones =ubicaciones_instance,
+                                dosis =dosis,
+                                estado=estado)
+
+    sweetify.success(request, 'Medicamentos Agregado Correctamente!!!')
+
+    return redirect('/principalMedicamentos')
+
+
 
 
 
@@ -104,8 +135,58 @@ def edicionUbicaciones(request, idubicaciones):
     ubicaciones = Ubicacioness.objects.get(idubicaciones=idubicaciones)
     return render(request, 'edicionUbicaciones.html', {'ubicaciones': ubicaciones})
 
+def edicionMedicamentos(request, idmedicamentos):
+    medicamentos = Medicamentos.objects.get(idmedicamentos=idmedicamentos)
+    marcas = Marcas.objects.all()
+    tipoFarmacos = Tipofarmacos.objects.all()
+    ubicaciones = Ubicacioness.objects.all()
+    return render(request, 'edicionMedicamentos.html', {'medicamentos': medicamentos,
+                                                                            'marcas': marcas,
+                                                                             'tipoFarmacos': tipoFarmacos,
+                                                                            'ubicaciones': ubicaciones})
 
 
+def editarMedicamentos(request):
+    idmedicamentos  = request.POST['txtIdMedicamentos']
+    descripcion = request.POST['txtDescripcionMedicamentos']
+    idubicaciones  = request.POST['txtIdUbicaciones']
+    idtipofarmaco  = request.POST['txtidTipoFarmaco']
+    idmarca   = request.POST['txtIdMarca']
+    dosis = request.POST['txtDosisMedicamentos']
+
+    print(idubicaciones)
+    print(idtipofarmaco)
+    print(idmarca)
+
+
+
+    tipofarmacos_instance = Tipofarmacos.objects.get(idtipofarmaco=idtipofarmaco)
+    marca_instance = Marcas.objects.get(idmarca=idmarca)
+    ubicaciones_instance = Ubicacioness.objects.get(idubicaciones=idubicaciones)
+
+    if 'txtEstadoMedicamentos' in request.POST:
+        estado = request.POST['txtEstadoMedicamentos']
+    else:
+        estado = '0'
+
+    # Valid if estado is on or off#
+    if estado == 'on':
+        estado = 1
+    else:
+        estado = 0
+
+    medicamentos = Medicamentos.objects.get(idmedicamentos=idmedicamentos)
+    medicamentos.idubicaciones = ubicaciones_instance
+    medicamentos.idmarca = marca_instance
+    medicamentos.idtipofarmaco = tipofarmacos_instance
+    medicamentos.dosis = dosis
+    medicamentos.descripcion = descripcion
+    medicamentos.estado =estado
+    medicamentos.save()
+
+    sweetify.success(request, 'Medicamentos Modificado Correctamente!!!')
+
+    return redirect('/principalMedicamentos')
 
 def editarMarcas(request):
     idmarca = request.POST['txtIdmarca']
@@ -203,6 +284,15 @@ def eliminarUbicaciones(request,idubicaciones):
     ubicaciones.delete()
     sweetify.success(request, 'Ubicacion Eliminado Correctamente!!!')
     return redirect('/principalUbicaciones')
+
+
+def eliminarMedicamentos(request,idmedicamentos):
+    medicamentos = Medicamentos.objects.get(idmedicamentos=idmedicamentos)
+    medicamentos.delete()
+    sweetify.success(request, 'Medicamento Eliminado Correctamente!!!')
+    return redirect('/principalMedicamentos')
+
+
 
 
 

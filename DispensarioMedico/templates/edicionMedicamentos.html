@@ -1,0 +1,101 @@
+{% extends "./base.html" %}
+
+{% block title %}Dispensario Médico{% endblock %}
+{% block navegacion %}Editando Medicamentos{% endblock %}
+
+{% block body %}
+    <div class="row">
+            <h4>Editando Medicamentos</h4>
+            <div class="card">
+                <div class="card-body">
+                    <form action="/editarMedicamentos/" method="post">{% csrf_token %}
+
+                      <div class="form-group">
+                          <label for="">ID:</label>
+                          <input type="text"
+                                 name="txtIdMedicamentos"
+                                 value="{{medicamentos.idmedicamentos }}"
+                                 class="form-control"
+                                 placeholder="ID"
+                                 readonly>
+                      </div>
+
+                        <div class="form-group mb-3">
+                            <label for="txtDescripcionMedicamentos">Descripción:</label>
+                            <input type="text"
+                                   name="txtDescripcionMedicamentos"
+                                   value="{{medicamentos.descripcion }}"
+                                   id="txtDescripcionMedicamentos"
+                                   class="form-control"
+                                   placeholder="Descripción"
+                                   minlength="1"
+                                   maxlength="500"
+                                   required>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label for="txtIdUbicaciones">Ubicación:</label>
+                            <select class="form-select"
+                                    name="txtIdUbicaciones"
+                                    id="txtIdUbicaciones">
+                                {% for ubicacione in ubicaciones %}
+                                    <option selected value="{{ medicamentos.idubicaciones }}">{{ ubicacione.descripcion }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label for="txtidTipoFarmaco">Tipo Fármaco:</label>
+                            <select class="form-select"
+                                    name="txtidTipoFarmaco"
+                                    id="txtidTipoFarmaco">
+                                {% for tipoFarmaco in tipoFarmacos %}
+                                    <option selected value="{{ medicamentos.idtipofarmaco }}">{{ tipoFarmaco.descripcion }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label for="txtIdMarca">Marca:</label>
+                            <select class="form-select"
+                                    name="txtIdMarca"
+                                    id="txtIdMarca">
+                                {% for marca in marcas %}
+                                    <option selected value="{{ medicamentos.idmarca }}">{{ marca.descripcion }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                       <div class="form-group" style="margin-left: 0.4rem">
+                          <div class="form-check">
+                              <input class="form-check-input"
+                                      type="checkbox"
+                                      name="txtEstadoMedicamentos"
+                                      id="txtEstadoMedicamentos"
+                                      {% if medicamentos.estado == 1 %}checked{% endif %}>
+                              <label class="form-check-label" for="gridCheck">Estado</label>
+                          </div>
+
+                      </div>
+
+                        <div class="form-group mb-3">
+                            <label for="txtDosisMedicamentos">Dosis:</label>
+                            <input type="text"
+                                   name="txtDosisMedicamentos"
+                                   value="{{ medicamentos.dosis }}"
+                                   id="txtDosisMedicamentos"
+                                   class="form-control"
+                                   placeholder="Dosis"
+                                   minlength="1"
+                                   maxlength="500"
+                                   required>
+                        </div>
+
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-success text-white">Actualizar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+{% endblock %}

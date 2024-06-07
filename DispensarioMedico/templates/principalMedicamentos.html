@@ -41,7 +41,7 @@
                                     id="txtidTipoFarmaco">
                                 <option selected>--Seleccionar--</option>
                                 {% for tipoFarmaco in tipoFarmacos %}
-                                    <option value="{{ tipoFarmaco.idubicaciones }}">{{ tipoFarmaco.descripcion }}</option>
+                                    <option value="{{ tipoFarmaco.idtipofarmaco }}">{{ tipoFarmaco.descripcion }}</option>
                                 {% endfor %}
                             </select>
                         </div>
@@ -119,7 +119,7 @@
                                         <i class="fa-regular fa-circle-check text-muted"></i>
                                     {% endif %}
                                 </td>
-                                <td><a href="edicionMedicamentos/{{ medicamento.idmedicamentos }}" class="btn btn-info btn-sm">Editar</a></td>
+                                <td><a href="edicionMedicamentos/{{ medicamento.idmedicamentos  }}" class="btn btn-info btn-sm">Editar</a></td>
                                 <td><a href="eliminarMedicamentos/{{ medicamento.idmedicamentos }}" class="btn btn-danger btn-sm btnEliminacion">Eliminar</a></td>
                             </tr>
                         {% endfor %}

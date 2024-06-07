@@ -97,14 +97,12 @@ class Marcas(models.Model):
     estado = models.TextField(db_column='Estado', blank=True, null=True)  # Field name made lowercase. This field type is a guess.
 
     def __str__(self):
-        texto = "{0} "
-        return texto.format(self.descripcion)
+        texto = "{0}"
+        return texto.format(self.idmarca)
 
     class Meta:
         managed = True
         db_table = 'Marcas'
-
-
 
 class Medicos(models.Model):
     idmedico = models.AutoField(db_column='idMedico', primary_key=True)  # Field name made lowercase.
@@ -136,7 +134,7 @@ class Tipofarmacos(models.Model):
     estado = models.TextField(db_column='Estado', blank=True, null=True)  # Field name made lowercase. This field type is a guess.
     def __str__(self):
         texto = "{0} "
-        return texto.format(self.descripcion)
+        return texto.format(self.idtipofarmaco)
 
     class Meta:
         managed = False
@@ -163,7 +161,7 @@ class Ubicacioness(models.Model):
 
     def __str__(self):
         texto = "{0} "
-        return texto.format(self.descripcion)
+        return texto.format(self.idubicaciones)
     class Meta:
         managed = False
         db_table = 'Ubicacioness'
