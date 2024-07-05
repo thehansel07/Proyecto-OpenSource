@@ -86,6 +86,10 @@ class Especialidadesmedicos(models.Model):
     descripcion = models.TextField(db_column='Descripcion', blank=True, null=True)  # Field name made lowercase.
     estado = models.TextField(db_column='Estado', blank=True, null=True)  # Field name made lowercase. This field type is a guess.
 
+    def __str__(self):
+        texto = "{0}"
+        return texto.format(self.idespecialidades)
+
     class Meta:
         managed = False
         db_table = 'EspecialidadesMedicos'
@@ -108,6 +112,8 @@ class Medicos(models.Model):
     idmedico = models.AutoField(db_column='idMedico', primary_key=True)  # Field name made lowercase.
     nombre = models.TextField(db_column='Nombre', blank=True, null=True)  # Field name made lowercase.
     cedula = models.TextField(db_column='Cedula', unique=True)  # Field name made lowercase.
+    estado = models.TextField(db_column='Estado', blank=True, null=True)  # Field name made lowercase. This field type is a guess.
+    tandalabor = models.TextField(db_column='TandaLabor', unique=True)  # Field name made lowercase.
     idespecialidades = models.ForeignKey(Especialidadesmedicos, models.DO_NOTHING, db_column='idEspecialidades', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
@@ -145,6 +151,9 @@ class Tipopacientes(models.Model):
     idTipoPaciente = models.AutoField(db_column='IdTipoPaciente', primary_key=True)  # Field name made lowercase.
     descripcion = models.TextField(db_column='Descripcion', blank=True, null=True)  # Field name made lowercase.
     estado = models.TextField(db_column='Estado', blank=True, null=True)  # Field name made lowercase. This field type is a guess.
+    def __str__(self):
+        texto = "{0}"
+        return texto.format(self.idTipoPaciente)
 
     class Meta:
         managed = False

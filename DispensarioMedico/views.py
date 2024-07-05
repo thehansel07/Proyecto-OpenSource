@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Marcas, Tipofarmacos, Ubicacioness, Medicamentos
+from .models import Marcas, Tipofarmacos, Ubicacioness, Medicamentos, Pacientes, Tipopacientes,Medicos, Especialidadesmedicos
 import sweetify
 
 
@@ -7,9 +7,11 @@ import sweetify
 
 def index(request):
     return render(request, 'index.html')
+
 def principalMarcas(request):
     listadoMarcas = Marcas.objects.all()
     return render(request, 'principalMarcas.html', {'marcas': listadoMarcas})
+
 def principalTipoFarmaco(request):
     listadoTipoFarmacos = Tipofarmacos.objects.all()
     print(listadoTipoFarmacos)
@@ -29,6 +31,81 @@ def principalMedicamentos(request):
                                                                                'marcas': marcas,
                                                                                'tipoFarmacos': tipoFarmacos,
                                                                                'ubicaciones': ubicaciones})
+def principalPaciente(request):
+    pacientes = Pacientes.objects.all()
+    tipoPaciente = Tipopacientes.objects.all()
+
+    return render(request, 'principalPaciente.html', {'pacientes': pacientes,
+                                                      'tipoPaciente':tipoPaciente})
+
+
+def principalMedico(request):
+    medicos = Medicos.objects.all()
+    especialidades = Especialidadesmedicos.objects.all()
+    return render(request, 'principalMedico.html', {'medicos': medicos,
+                                                      'especialidades':especialidades})
+
+
+
+
+
+
+
+
+
+
+def registrarMedico(request):
+    nombre = request.POST['txtNombreMedico']
+    cedula = request.POST['txtCedulaMedico']
+    tandaLabor = request.POST['txttandaLaborMedico']
+    idespecialidades = request.POST['txtidEspecialidades']
+    estado = request.POST['txtEstadoMedico']
+
+    especialidades_instance = Especialidadesmedicos.objects.get(idespecialidades=idespecialidades)
+
+
+    #Valid if estado is on or off#
+    if estado == 'on':
+        estado = 1
+    else:
+        estado = 0
+
+    Medicos.objects.create( nombre = nombre,
+                            cedula = cedula,
+                            tandalabor = tandaLabor,
+                            idespecialidades = especialidades_instance,
+                            estado=estado )
+    
+    sweetify.success(request, 'Medico Agregado Correctamente!!!')
+
+    return redirect('/principalMedico')
+
+def registrarPaciente(request):
+    nombre = request.POST['txtNombrePaciente']
+    cedula = request.POST['txtCedulaPaciente']
+    noCarnet = request.POST['txtNoCarnetPaciente']
+    idTipoPaciente = request.POST['txtidTipoPaciente']
+    estado = request.POST['txtEstadoPaciente']
+
+    tipoPaciente_instance = Tipopacientes.objects.get(idTipoPaciente=idTipoPaciente)
+
+
+    #Valid if estado is on or off#
+    if estado == 'on':
+        estado = 1
+    else:
+        estado = 0
+
+    Pacientes.objects.create(nombre=nombre,
+                            cedula=cedula,
+                            nocarnet=noCarnet,
+                            idTipoPaciente=tipoPaciente_instance,
+                            estado=estado )
+    
+    sweetify.success(request, 'Paciente Agregado Correctamente!!!')
+
+    return redirect('/principalPaciente')
+
 
 
 def registrarMarcas(request):
@@ -121,6 +198,18 @@ def registrarMedicamentos(request):
 
 
 
+
+
+def edicionMedico(request, idmedico):
+    medico = Medicos.objects.get(idmedico=idmedico)
+    especialidad = Especialidadesmedicos.objects.all()
+    return render(request, 'edicionMedico.html', {'medico': medico, 
+                                                   'especialidad':especialidad})
+def edicionPaciente(request, idpaciente):
+    paciente = Pacientes.objects.get(idPaciente=idpaciente)
+    tipoPaciente = Tipopacientes.objects.all()
+    return render(request, 'edicionPaciente.html', {'paciente': paciente, 
+                                                   'tipoPaciente':tipoPaciente})
 def edicionMarcas(request, idmarca):
     marca = Marcas.objects.get(idmarca=idmarca)
     print(marca.estado)
@@ -144,6 +233,82 @@ def edicionMedicamentos(request, idmedicamentos):
                                                                             'marcas': marcas,
                                                                              'tipoFarmacos': tipoFarmacos,
                                                                             'ubicaciones': ubicaciones})
+
+
+
+
+
+
+
+def editarMedico(request):
+    idmedico  = request.POST['txtidMedico']
+    nombre = request.POST['txtNombreMedico']
+    cedula = request.POST['txtCedulaMedico']
+    tandaLabor = request.POST['txttandaLaborMedico']
+    idespecialidades = request.POST['txtidEspecialidades']
+
+    especialidades_instance = Especialidadesmedicos.objects.get(idespecialidades=idespecialidades)
+
+    if 'txtEstadoMedico' in request.POST:
+        estado = request.POST['txtEstadoMedico']
+    else:
+        estado = '0'
+
+    # Valid if estado is on or off#
+    if estado == 'on':
+        estado = 1
+    else:
+        estado = 0
+
+    medico = Medicos.objects.get(idmedico=idmedico)
+    medico.idespecialidades = especialidades_instance
+    medico.nombre = nombre
+    medico.cedula = cedula
+    medico.tandalabor = tandaLabor
+    medico.estado =estado
+    medico.save()
+
+    sweetify.success(request, 'Medico Modificado Correctamente!!!')
+
+    return redirect('/principalMedico')
+
+def editarPaciente(request):
+    idPaciente  = request.POST['txtidPaciente']
+    nombre = request.POST['txtNombrePaciente']
+    cedula = request.POST['txtCedulaPaciente']
+    noCarnet = request.POST['txtNoCarnetPaciente']
+    idTipoPaciente = request.POST['txtidTipoPaciente']
+
+    tipoPaciente_instance = Tipopacientes.objects.get(idTipoPaciente=idTipoPaciente)
+
+    if 'txtEstadoPaciente' in request.POST:
+        estado = request.POST['txtEstadoPaciente']
+    else:
+        estado = '0'
+
+    # Valid if estado is on or off#
+    if estado == 'on':
+        estado = 1
+    else:
+        estado = 0
+
+    pacientes = Pacientes.objects.get(idPaciente=idPaciente)
+    pacientes.idTipoPaciente = tipoPaciente_instance
+    pacientes.nombre = nombre
+    pacientes.cedula = cedula
+    pacientes.nocarnet = noCarnet
+    pacientes.estado =estado
+    pacientes.save()
+
+    sweetify.success(request, 'Paciente Modificado Correctamente!!!')
+
+    return redirect('/principalPaciente')
+
+
+
+
+
+
 
 
 def editarMedicamentos(request):
@@ -259,12 +424,29 @@ def editarUbicaciones(request):
     ubicaciones.estante = estante
     ubicaciones.tramo = tramo
     ubicaciones.celda = celda
-    ubicaciones.estado =estado
+    ubicaciones.estado = estado
     ubicaciones.save()
 
     sweetify.success(request, 'Ubicaciones Modificado Correctamente!!!')
 
     return redirect('/principalUbicaciones')
+
+
+
+def eliminarMedico(request,idmedico):
+    medico = Medicos.objects.get(idmedico=idmedico)
+    medico.delete()
+    sweetify.success(request, 'Medico Eliminado Correctamente!!!')
+    return redirect('/principalMedico')
+
+
+def eliminarPaciente(request,idpaciente):
+    paciente = Pacientes.objects.get(idPaciente=idpaciente)
+    paciente.delete()
+    sweetify.success(request, 'Paciente Eliminado Correctamente!!!')
+    return redirect('/principalPaciente')
+
+
 
 def eliminarMarcas(request,idmarca):
     marca = Marcas.objects.get(idmarca=idmarca)
@@ -291,6 +473,7 @@ def eliminarMedicamentos(request,idmedicamentos):
     medicamentos.delete()
     sweetify.success(request, 'Medicamento Eliminado Correctamente!!!')
     return redirect('/principalMedicamentos')
+
 
 
 

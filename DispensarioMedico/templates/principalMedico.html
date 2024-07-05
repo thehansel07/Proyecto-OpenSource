@@ -1,0 +1,125 @@
+{% extends "./base.html" %}
+
+{% block title %}Dispensario Médico{% endblock %}
+{% block navegacion %}Medicos{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4 mb-4">
+            <h4>Gestión de Medicos</h4>
+            <div class="card">
+                <div class="card-body">
+                    <form action="/registrarMedico/" method="post">{% csrf_token %}
+                        <div class="form-group mb-3">
+                            <label for="txtNombreMedico">Nombre:</label>
+                            <input type="text"
+                                   name="txtNombreMedico"
+                                   id="txtNombreMedico"
+                                   class="form-control"
+                                   placeholder="Nombre"
+                                   minlength="1"
+                                   maxlength="50"
+                                   required>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label for="txtCedula">Cedula:</label>
+                            <input type="number"
+                                   name="txtCedulaMedico"
+                                   id="txtCedulaMedico"
+                                   class="form-control"
+                                   placeholder="Cedula"
+                                   minlength="1"
+                                   maxlength="15"
+                                   required>
+                        </div>
+
+
+                        <div class="form-group mb-3">
+                            <label for="txtidEspecialidades">Especialidades:</label>
+                            <select class="form-select"
+                                    name="txtidEspecialidades"
+                                    id="txtidEspecialidades">
+                                <option selected>--Seleccionar--</option>
+                                {% for especialidad in especialidades %}
+                                    <option value="{{ especialidad.idespecialidades }}">{{ especialidad.descripcion }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label for="txttandaLaborMedico">Tanda Labor:</label>
+                            <input type="text"
+                                   name="txttandaLaborMedico"
+                                   id="txttandaLaborMedico"
+                                   class="form-control"
+                                   placeholder="Tanda labor"
+                                   minlength="1"
+                                   maxlength="15"
+                                   required>
+                        </div>
+
+
+                        <div class="form-check mb-3">
+                            <input class="form-check-input"
+                                   type="checkbox"
+                                   name="txtEstadoMedico"
+                                   id="txtEstadoMedico"
+                                   required>
+                            <label class="form-check-label" for="txtEstadoMedico">Estado</label>
+                        </div>
+
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-success text-white">Guardar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8">
+            <h3>Listado de Pacientes</h3>
+            <div class="table-responsive py-2">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Cedula</th>
+                            <th>Especialidades</th>
+                            <th>Tanda Labor</th>
+                            <th>Estado</th>
+                            <th colspan="2">Opciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for medico in medicos %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ medico.idmedico }}</td>
+                                <td>{{ medico.nombre }}</td>
+                                <td>{{ medico.cedula }}</td>
+                                <td>{{ medico.idespecialidades }}</td>
+                                <td>{{ medico.tandalabor }}</td>
+                                <td>
+                                    {% if medico.estado == 1 %}
+                                        <i class="fa-solid fa-circle-check text-success"></i>
+                                    {% else %}
+                                        <i class="fa-regular fa-circle-check text-muted"></i>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <a href="edicionMedico/{{ medico.idmedico }}" class="btn btn-info btn-sm">Editar</a>
+                                </td>
+                                <td>
+                                    <a href="eliminarMedico/{{ medico.idmedico }}" class="btn btn-danger btn-sm btnEliminacion">Eliminar</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

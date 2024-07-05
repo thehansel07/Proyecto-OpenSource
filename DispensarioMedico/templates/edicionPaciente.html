@@ -1,0 +1,97 @@
+{% extends "./base.html" %}
+
+{% block title %}Dispensario Médico{% endblock %}
+{% block navegacion %}Editando Paciente{% endblock %}
+
+{% block body %}
+    <div class="row">
+            <h4>Editando Paciente</h4>
+            <div class="card">
+                <div class="card-body">
+                    <form action="/editarPaciente/" method="post">{% csrf_token %}
+
+                        <div class="form-group">
+                            <label for="">ID:</label>
+                            <input type="text"
+                                   name="txtidPaciente"
+                                   value="{{paciente.idPaciente}}"
+                                   class="form-control"
+                                   placeholder="ID"
+                                   readonly>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label for="txtNombrePaciente">Nombre:</label>
+                            <input type="text"
+                                   name="txtNombrePaciente"
+                                   value="{{paciente.nombre}}"
+                                   id="txtNombrePaciente"
+                                   class="form-control"
+                                   placeholder="Nombre"
+                                   minlength="1"
+                                   maxlength="50"
+                                   required>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label for="txtCedulaPaciente">Cedula:</label>
+                            <input type="number"
+                                   name="txtCedulaPaciente"
+                                   value="{{paciente.cedula}}"
+                                   id="txtCedulaPaciente"
+                                   class="form-control"
+                                   placeholder="Cedula"
+                                   minlength="1"
+                                   maxlength="15"
+                                   required>
+                        </div>
+
+
+                        <div class="form-group mb-3">
+                            <label for="txtNoCarnetPaciente">Numero Carnet:</label>
+                            <input type="text"
+                                   name="txtNoCarnetPaciente"
+                                   value="{{paciente.nocarnet}}"
+                                   id="txtNoCarnetPaciente"
+                                   class="form-control"
+                                   placeholder="Numero Carnet"
+                                   minlength="1"
+                                   maxlength="15"
+                                   required>
+                        </div>
+
+
+                        <div class="form-group mb-3">
+                            <label for="txtidTipoPaciente">Tipo Paciente:</label>
+                            <select class="form-select"
+                                    name="txtidTipoPaciente"
+                                    id="txtidTipoPaciente">
+                                <option selected>--Seleccionar--</option>
+                                {% for tipo in tipoPaciente %}
+                                    <option selected value="{{ paciente.idTipoPaciente }}">{{ tipo.descripcion }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                    
+
+                        <div class="form-group" style="margin-left: 0.4rem">
+                            <div class="form-check">
+                                <input class="form-check-input"
+                                        type="checkbox"
+                                        name="txtEstadoPaciente"
+                                        id="txtEstadoPaciente"
+                                        {% if paciente.estado == 1 %}checked{% endif %}>
+                                <label class="form-check-label" for="gridCheck">Estado</label>
+                            </div>
+  
+                        </div>
+
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-success text-white">Actualizar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+{% endblock %}

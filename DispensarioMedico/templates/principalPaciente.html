@@ -1,0 +1,125 @@
+{% extends "./base.html" %}
+
+{% block title %}Dispensario Médico{% endblock %}
+{% block navegacion %}Pacientes{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4 mb-4">
+            <h4>Gestión de Pacientes</h4>
+            <div class="card">
+                <div class="card-body">
+                    <form action="/registrarPaciente/" method="post">{% csrf_token %}
+                        <div class="form-group mb-3">
+                            <label for="txtNombre">Nombre:</label>
+                            <input type="text"
+                                   name="txtNombrePaciente"
+                                   id="txtNombrePaciente"
+                                   class="form-control"
+                                   placeholder="Nombre"
+                                   minlength="1"
+                                   maxlength="50"
+                                   required>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label for="txtCedula">Cedula:</label>
+                            <input type="number"
+                                   name="txtCedulaPaciente"
+                                   id="txtCedulaPaciente"
+                                   class="form-control"
+                                   placeholder="Cedula"
+                                   minlength="1"
+                                   maxlength="15"
+                                   required>
+                        </div>
+
+
+                        <div class="form-group mb-3">
+                            <label for="txtCedula">Numero Carnet:</label>
+                            <input type="text"
+                                   name="txtNoCarnetPaciente"
+                                   id="txtNoCarnetPaciente"
+                                   class="form-control"
+                                   placeholder="Numero Carnet"
+                                   minlength="1"
+                                   maxlength="15"
+                                   required>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label for="txtidTipoPaciente">Tipo Paciente:</label>
+                            <select class="form-select"
+                                    name="txtidTipoPaciente"
+                                    id="txtidTipoPaciente">
+                                <option selected>--Seleccionar--</option>
+                                {% for tipo in tipoPaciente %}
+                                    <option value="{{ tipo.idTipoPaciente }}">{{ tipo.descripcion }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="form-check mb-3">
+                            <input class="form-check-input"
+                                   type="checkbox"
+                                   name="txtEstadoPaciente"
+                                   id="txtEstadoPaciente"
+                                   required>
+                            <label class="form-check-label" for="txtEstadoPaciente">Estado</label>
+                        </div>
+
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-success text-white">Guardar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8">
+            <h3>Listado de Pacientes</h3>
+            <div class="table-responsive py-2">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Cedula</th>
+                            <th>Carnet</th>
+                            <th>Tipo Paciente</th>
+                            <th>Estado</th>
+                            <th colspan="2">Opciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for paciente in pacientes %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ paciente.idPaciente }}</td>
+                                <td>{{ paciente.nombre }}</td>
+                                <td>{{ paciente.cedula }}</td>
+                                <td>{{ paciente.nocarnet }}</td>
+                                <td>{{ paciente.idTipoPaciente }}</td>
+
+                                <td>
+                                    {% if paciente.estado == 1 %}
+                                        <i class="fa-solid fa-circle-check text-success"></i>
+                                    {% else %}
+                                        <i class="fa-regular fa-circle-check text-muted"></i>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <a href="edicionPaciente/{{ paciente.idPaciente }}" class="btn btn-info btn-sm">Editar</a>
+                                </td>
+                                <td>
+                                    <a href="eliminarPaciente/{{ paciente.idPaciente }}" class="btn btn-danger btn-sm btnEliminacion">Eliminar</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
