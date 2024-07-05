@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from .models import Marcas, Tipofarmacos, Ubicacioness, Medicamentos, Pacientes, Tipopacientes,Medicos, Especialidadesmedicos, Visitas
 import sweetify
+from datetime import datetime 
+
 
 
 # Create your views here Client to server.
@@ -47,10 +49,14 @@ def principalMedico(request):
 
 
 def principalVisitas(request):
+    
     visitas = Visitas.objects.all()
     medicos = Medicos.objects.all()
     medicamentos = Medicamentos.objects.all()
     pacientes = Pacientes.objects.all()
+
+    print(visitas[2].fechavisita)
+
     return render(request, 'principalVisitas.html', {'medicos': medicos,
                                                     'visitas':visitas, 
                                                     'medicamentos':medicamentos, 
@@ -61,6 +67,39 @@ def principalVisitas(request):
 
 
 
+
+def registrarVisita(request):
+    idmedico   = request.POST['txtidMedico']
+    idPaciente = request.POST['txtidPaciente']
+    fechavisita = request.POST['txtfechavisita']
+    horavisita = request.POST['txthoravisita']
+    descripcionMedicamento = request.POST['txtdescripcionMedicamento']
+    recomendacionVisita = request.POST['txtRecomendacionVisita']
+    estado = request.POST['txtEstadoVisita']
+
+    medico_instance = Medicos.objects.get(idmedico=idmedico)
+    paciente_instance = Pacientes.objects.get(idPaciente =idPaciente)
+
+
+
+
+    #Valid if estado is on or off#
+    if estado == 'on':
+        estado = 1
+    else:
+        estado = 0
+
+    Visitas.objects.create( idmedico  = medico_instance,
+                            idPaciente = paciente_instance,
+                            fechavisita = fechavisita,
+                            horavisita = horavisita,
+                            medicamentossuministrado  = descripcionMedicamento,
+                            recomendaciones  = recomendacionVisita,
+                            estado=estado )
+    
+    sweetify.success(request, 'Visita Agregada Correctamente!!!')
+
+    return redirect('/principalVisitas')
 
 
 def registrarMedico(request):
@@ -440,6 +479,16 @@ def editarUbicaciones(request):
 
     return redirect('/principalUbicaciones')
 
+
+
+
+
+
+def eliminarVisita(request,idvisitas ):
+    visita = Visitas.objects.get(idvisitas=idvisitas)
+    visita.delete()
+    sweetify.success(request, 'Visita Eliminado Correctamente!!!')
+    return redirect('/principalVisitas')
 
 
 def eliminarMedico(request,idmedico):

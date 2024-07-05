@@ -21,6 +21,7 @@ urlpatterns = [
     path('registrarMedicamentos/', views.registrarMedicamentos, name='registrarMedicamentos'),
     path('registrarPaciente/', views.registrarPaciente, name='registrarPaciente'),
     path('registrarMedico/', views.registrarMedico, name='registrarMedico'),
+    path('registrarVisita/', views.registrarVisita, name='registrarVisita'),
 
 
     path('edicionMarcas/<idmarca>', views.edicionMarcas, name='edicionMarcas'),
@@ -45,7 +46,8 @@ urlpatterns = [
     path('eliminarUbicaciones/<idubicaciones>', views.eliminarUbicaciones, name='eliminarUbicaciones'),
     path('eliminarMedicamentos/<idmedicamentos>', views.eliminarMedicamentos, name='eliminarMedicamentos'),
     path('eliminarPaciente/<idpaciente>', views.eliminarPaciente, name='eliminarPaciente'),
-    path('eliminarMedico/<idmedico>', views.eliminarMedico, name='eliminarMedico')
+    path('eliminarMedico/<idmedico>', views.eliminarMedico, name='eliminarMedico'),
+    path('eliminarVisita/<idvisitas>', views.eliminarVisita, name='eliminarVisita')
 
 
 
