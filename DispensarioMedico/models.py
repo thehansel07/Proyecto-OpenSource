@@ -116,6 +116,11 @@ class Medicos(models.Model):
     tandalabor = models.TextField(db_column='TandaLabor', unique=True)  # Field name made lowercase.
     idespecialidades = models.ForeignKey(Especialidadesmedicos, models.DO_NOTHING, db_column='idEspecialidades', blank=True, null=True)  # Field name made lowercase.
 
+    def __str__(self):
+        texto = "{0}"
+        return texto.format(self.idmedico)
+
+
     class Meta:
         managed = False
         db_table = 'Medicos'
@@ -128,6 +133,12 @@ class Pacientes(models.Model):
     nocarnet = models.TextField(db_column='NoCarnet', blank=True, null=True)  # Field name made lowercase.
     idTipoPaciente = models.ForeignKey('Tipopacientes', models.DO_NOTHING, db_column='idTipoPaciente', to_field='idTipoPaciente', blank=True, null=True)  # Field name made lowercase.
     estado = models.TextField(db_column='Estado', blank=True, null=True)  # Field name made lowercase. This field type is a guess.
+
+
+    def __str__(self):
+        texto = "{0}"
+        return texto.format(self.idPaciente)
+    
 
     class Meta:
         managed = False
@@ -171,6 +182,7 @@ class Ubicacioness(models.Model):
     def __str__(self):
         texto = "{0} "
         return texto.format(self.idubicaciones)
+    
     class Meta:
         managed = False
         db_table = 'Ubicacioness'
@@ -185,6 +197,8 @@ class Visitas(models.Model):
     medicamentossuministrado = models.TextField(db_column='MedicamentosSuministrado', blank=True, null=True)  # Field name made lowercase.
     recomendaciones = models.TextField(db_column='Recomendaciones', blank=True, null=True)  # Field name made lowercase.
     estado = models.TextField(db_column='Estado', blank=True, null=True)  # Field name made lowercase. This field type is a guess.
+
+    
 
     class Meta:
         managed = False

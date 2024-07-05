@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Marcas, Tipofarmacos, Ubicacioness, Medicamentos, Pacientes, Tipopacientes,Medicos, Especialidadesmedicos
+from .models import Marcas, Tipofarmacos, Ubicacioness, Medicamentos, Pacientes, Tipopacientes,Medicos, Especialidadesmedicos, Visitas
 import sweetify
 
 
@@ -46,6 +46,15 @@ def principalMedico(request):
                                                       'especialidades':especialidades})
 
 
+def principalVisitas(request):
+    visitas = Visitas.objects.all()
+    medicos = Medicos.objects.all()
+    medicamentos = Medicamentos.objects.all()
+    pacientes = Pacientes.objects.all()
+    return render(request, 'principalVisitas.html', {'medicos': medicos,
+                                                    'visitas':visitas, 
+                                                    'medicamentos':medicamentos, 
+                                                    'pacientes':pacientes})
 
 
 
