@@ -1,0 +1,138 @@
+{% extends "./base.html" %}
+
+{% block title %}Dispensario Médico{% endblock %}
+{% block navegacion %}Editando Visita{% endblock %}
+
+{% block body %}
+    <div class="row">
+            <h4>Editando Visita</h4>
+            <div class="card">
+                <div class="card-body">
+                    <form action="/editarVisita/" method="post">{% csrf_token %}
+
+                        <div class="form-group">
+                            <label for="txtidvisitas ">ID:</label>
+                            <input type="text"
+                                   name="txtidvisitas"
+                                   id="txtidvisitas"
+                                   value="{{visitas.idvisitas}}"
+                                   class="form-control"
+                                   placeholder="ID"
+                                   readonly>
+                        </div>
+
+
+                        <div class="form-group mb-3">
+                            <label for="txtidMedico">Medicos:</label>
+                            <select class="form-select"
+                                    name="txtidMedico"
+                                    id="txtidMedico">
+                                <option selected>--Seleccionar--</option>
+                                {%for medico in medicos  %}
+                                    <option selected value="{{ visitas.idmedico  }}">{{ medico.nombre }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        
+                        <div class="form-group mb-3">
+                            <label for="txtidPaciente">Pacientes:</label>
+                            <select class="form-select"
+                                    name="txtidPaciente"
+                                    id="txtidPaciente">
+                                <option>--Seleccionar--</option>
+                                {% for paciente in pacientes %}
+                                    <option selected value="{{ visitas.idPaciente  }}">{{ paciente.nombre }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                    <div class="form-group mb-3">
+                     <label for="txtfechavisita">Fecha Visita:</label>
+                        <input type="date"
+                               name="txtfechavisita"
+                               id="txtfechavisita"
+                               value="{{ visita.fechavisita|date:"d/m/y" }}"
+                               class="form-control"
+                               placeholder="Fecha Visita"
+                               required>
+                    </div>
+
+                    <label for="txthoravisita">Hora Visita:</label>
+                        <input type="time"
+                               name="txthoravisita"
+                               value="{{visitas.horavisita}}"
+                               id="txthoravisita"
+                               class="form-control"
+                               placeholder="Hora Visita"
+                               required>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label for="txtdescripcionMedicamento">Medicamentos:</label>
+                        <select class="form-select"
+                                name="txtdescripcionMedicamento"
+                                id="txtdescripcionMedicamento">
+                            <option >--Seleccionar--</option>
+                            {% for medicamento in medicamentos %}
+                                    <option value="{{ medicamento.descripcion  }}">{{ medicamento.descripcion  }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+
+
+                    
+
+                    <div class="form-group mb-3">
+                        <label for="txtRecomendacionVisita">Recomiendaciones:</label>
+                        <input type="text"
+                               name="txtRecomendacionVisita"
+                               value="{{visitas.recomendaciones}}"
+                               id="txtRecomendacionVisita"
+                               class="form-control"
+                               placeholder="Recomendaciones"
+                               required>
+                    </div>
+
+
+                    <div class="form-group" style="margin-left: 0.4rem">
+                        <div class="form-check">
+                            <input class="form-check-input"
+                                    type="checkbox"
+                                    name="txtEstadoVisita"
+                                    id="txtEstadoVisita"
+                                    {% if visitas.estado == 1 %}checked{% endif %}>
+                            <label class="form-check-label" for="gridCheck">Estado</label>
+                        </div>
+
+                    </div>
+<br><br>
+                       
+
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-success text-white">Actualizar</button>
+                        </div>
+
+                        <br><br>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                var fechaVisitaStr = "05/07/24";  // La fecha en formato DD/MM/YY
+                if (fechaVisitaStr) {
+                    var partes = fechaVisitaStr.split('/');
+                    var dia = partes[0];
+                    var mes = partes[1];
+                    var ano = "20" + partes[2];  // Añadir "20" para convertir YY a YYYY
+                    var fechaVisitaFormatted = ano + '-' + mes + '-' + dia;  // Convertir a YYYY-MM-DD
+                    document.getElementById('txtfechavisita').value = fechaVisitaFormatted;
+                }
+            });
+        </script>
+{% endblock %}
+

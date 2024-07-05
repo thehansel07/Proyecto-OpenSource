@@ -74,8 +74,6 @@
                                    id="txtRecomendacionVisita"
                                    class="form-control"
                                    placeholder="Recomendaciones"
-                                   minlength="1"
-                                   maxlength="15"
                                    required>
                         </div>
 
@@ -136,7 +134,7 @@
                                     {% endif %}
                                 </td>
                                 <td>
-                                    <a href="edicionPaciente/{{ paciente.idPaciente }}" class="btn btn-info btn-sm">Editar</a>
+                                    <a href="edicionVisita/{{ visita.idvisitas  }}" class="btn btn-info btn-sm">Editar</a>
                                 </td>
                                 <td>
                                     <a href="eliminarVisita/{{ visita.idvisitas }}" class="btn btn-danger btn-sm btnEliminacion">Eliminar</a>

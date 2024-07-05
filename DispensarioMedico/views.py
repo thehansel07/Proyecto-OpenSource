@@ -16,7 +16,6 @@ def principalMarcas(request):
 
 def principalTipoFarmaco(request):
     listadoTipoFarmacos = Tipofarmacos.objects.all()
-    print(listadoTipoFarmacos)
     return render(request, 'principalTipoFarmaco.html', {'tipoFarmacos': listadoTipoFarmacos})
 
 def principalUbicaciones(request):
@@ -28,7 +27,6 @@ def principalMedicamentos(request):
     tipoFarmacos = Tipofarmacos.objects.all()
     ubicaciones = Ubicacioness.objects.all()
     medicamentos = Medicamentos.objects.all()
-    print(medicamentos)
     return render(request, 'principalMedicamentos.html', {'medicamentos': medicamentos,
                                                                                'marcas': marcas,
                                                                                'tipoFarmacos': tipoFarmacos,
@@ -54,18 +52,10 @@ def principalVisitas(request):
     medicos = Medicos.objects.all()
     medicamentos = Medicamentos.objects.all()
     pacientes = Pacientes.objects.all()
-
-    print(visitas[2].fechavisita)
-
     return render(request, 'principalVisitas.html', {'medicos': medicos,
                                                     'visitas':visitas, 
                                                     'medicamentos':medicamentos, 
                                                     'pacientes':pacientes})
-
-
-
-
-
 
 
 def registrarVisita(request):
@@ -80,6 +70,8 @@ def registrarVisita(request):
     medico_instance = Medicos.objects.get(idmedico=idmedico)
     paciente_instance = Pacientes.objects.get(idPaciente =idPaciente)
 
+    print(medico_instance)
+    print(paciente_instance)
 
 
 
@@ -247,6 +239,15 @@ def registrarMedicamentos(request):
 
 
 
+def edicionVisita(request, idvisitas):
+    visitas = Visitas.objects.get(idvisitas=idvisitas)
+    medicos = Medicos.objects.all()
+    medicamentos = Medicamentos.objects.all()
+    pacientes = Pacientes.objects.all()
+    return render(request, 'edicionVisita.html', {'medicos': medicos,
+                                                    'visitas':visitas, 
+                                                    'medicamentos':medicamentos, 
+                                                    'pacientes':pacientes})
 
 def edicionMedico(request, idmedico):
     medico = Medicos.objects.get(idmedico=idmedico)
@@ -260,7 +261,6 @@ def edicionPaciente(request, idpaciente):
                                                    'tipoPaciente':tipoPaciente})
 def edicionMarcas(request, idmarca):
     marca = Marcas.objects.get(idmarca=idmarca)
-    print(marca.estado)
     return render(request, 'edicionMarcas.html', {'marca': marca})
 
 
@@ -285,6 +285,52 @@ def edicionMedicamentos(request, idmedicamentos):
 
 
 
+
+
+
+
+
+
+def editarVisita(request):
+    id_visitas = request.POST['txtidvisitas']
+    id_medico   = request.POST['txtidMedico']
+    id_Paciente = request.POST['txtidPaciente']
+    fecha_visita = request.POST['txtfechavisita']
+    hora_visita = request.POST['txthoravisita']
+    medicamentos_suministrado = request.POST['txtdescripcionMedicamento']
+    recomendaciones_ = request.POST['txtRecomendacionVisita']
+    estado_ = request.POST['txtEstadoVisita']
+
+
+    medico_instance = Medicos.objects.get(idmedico=id_medico)
+    paciente_instance = Pacientes.objects.get(idPaciente =id_Paciente)
+
+    print(medicamentos_suministrado)
+
+    if 'txtEstadoVisita' in request.POST:
+        estado_ = request.POST['txtEstadoVisita']
+    else:
+        estado_ = '0'
+
+    # Valid if estado is on or off#
+    if estado_ == 'on':
+        estado_ = 1
+    else:
+        estado_ = 0
+
+    visit = Visitas.objects.get(idvisitas=id_visitas)
+    visit.idmedico = medico_instance
+    visit.idPaciente = paciente_instance
+    visit.fechavisita = fecha_visita
+    visit.horavisita = hora_visita
+    visit.medicamentossuministrado = medicamentos_suministrado
+    visit.recomendaciones = recomendaciones_
+    visit.estado = estado_
+    visit.save()
+    
+    sweetify.success(request, 'Visita Actualizada Correctamente!!!')
+
+    return redirect('/principalVisitas')
 
 
 
@@ -354,11 +400,6 @@ def editarPaciente(request):
 
 
 
-
-
-
-
-
 def editarMedicamentos(request):
     idmedicamentos  = request.POST['txtIdMedicamentos']
     descripcion = request.POST['txtDescripcionMedicamentos']
@@ -366,12 +407,6 @@ def editarMedicamentos(request):
     idtipofarmaco  = request.POST['txtidTipoFarmaco']
     idmarca   = request.POST['txtIdMarca']
     dosis = request.POST['txtDosisMedicamentos']
-
-    print(idubicaciones)
-    print(idtipofarmaco)
-    print(idmarca)
-
-
 
     tipofarmacos_instance = Tipofarmacos.objects.get(idtipofarmaco=idtipofarmaco)
     marca_instance = Marcas.objects.get(idmarca=idmarca)
@@ -449,6 +484,7 @@ def editarTipoFarmaco(request):
     sweetify.success(request, 'Tipo Farmaco Modificado Correctamente!!!')
 
     return redirect('/principalTipoFarmaco')
+
 def editarUbicaciones(request):
     idubicaciones = request.POST['txtIdUbicaciones']
     descripcion = request.POST['txtDescripcionUbicaciones']

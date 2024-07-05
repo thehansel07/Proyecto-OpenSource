@@ -30,6 +30,7 @@ urlpatterns = [
     path('edicionMedicamentos/<idmedicamentos>', views.edicionMedicamentos, name='edicionMedicamentos'),
     path('edicionPaciente/<idpaciente>', views.edicionPaciente, name='edicionPaciente'),
     path('edicionMedico/<idmedico>', views.edicionMedico, name='edicionMedico'),
+    path('edicionVisita/<idvisitas>', views.edicionVisita, name='edicionVisita'),
 
 
     path('editarMarcas/', views.editarMarcas, name='editarMarcas'),
@@ -38,6 +39,7 @@ urlpatterns = [
     path('editarMedicamentos/', views.editarMedicamentos, name='editarMedicamentos'),
     path('editarPaciente/', views.editarPaciente, name='editarPaciente'),
     path('editarMedico/', views.editarMedico, name='editarMedico'),
+    path('editarVisita/', views.editarVisita, name='editarVisita'),
 
 
 

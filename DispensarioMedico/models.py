@@ -192,13 +192,15 @@ class Visitas(models.Model):
     idvisitas = models.AutoField(db_column='idVisitas', primary_key=True)  # Field name made lowercase.
     idmedico = models.ForeignKey(Medicos, models.DO_NOTHING, db_column='idMedico', blank=True, null=True)  # Field name made lowercase.
     idPaciente = models.ForeignKey(Pacientes, models.DO_NOTHING, db_column='idPaciente', to_field='idPaciente', blank=True, null=True)  # Field name made lowercase.
-    fechavisita = models.TextField(db_column='FechaVisita', blank=True)  # Field name made lowercase.
+    fechavisita = models.DateField(db_column='FechaVisita', blank=True)  # Field name made lowercase.
     horavisita = models.TimeField(db_column='HoraVisita', blank=True, null=True)  # Field name made lowercase.
     medicamentossuministrado = models.TextField(db_column='MedicamentosSuministrado', blank=True, null=True)  # Field name made lowercase.
     recomendaciones = models.TextField(db_column='Recomendaciones', blank=True, null=True)  # Field name made lowercase.
     estado = models.TextField(db_column='Estado', blank=True, null=True)  # Field name made lowercase. This field type is a guess.
 
-    
+    def __str__(self):
+        texto = "{0} "
+        return texto.format(self.idvisitas)
 
     class Meta:
         managed = False
